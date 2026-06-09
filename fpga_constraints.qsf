@@ -1,0 +1,34 @@
+-- Pin assignments for FPGA Shape Detector
+-- Example for Intel/Altera FPGA (adjust for your specific board)
+
+-- Clock
+set_location_assignment PIN_R8 -to clk
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to clk
+
+-- Reset button
+set_location_assignment PIN_A7 -to reset
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to reset
+
+-- UART RX (connect to USB-to-UART converter)
+set_location_assignment PIN_Y15 -to rx
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to rx
+
+-- LED outputs
+set_location_assignment PIN_A8 -to led_cube
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_cube
+
+set_location_assignment PIN_A9 -to led_cylinder
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_cylinder
+
+set_location_assignment PIN_A10 -to led_triangle
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_triangle
+
+set_location_assignment PIN_B10 -to led_unknown
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to led_unknown
+
+-- Shape code debug outputs (optional)
+set_location_assignment PIN_A11 -to shape_code[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to shape_code[0]
+
+set_location_assignment PIN_A12 -to shape_code[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to shape_code[1]
