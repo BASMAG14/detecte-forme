@@ -93,27 +93,28 @@ def classify_shape(features):
     area = features["area"]
     perimeter = features["perimeter"]
 
-    # Prioritise clear circular shapes
-    if circularity >= 0.65:
-        return "CYLINDRE"
-
-    # Triangle (explicit)
+    # Triangle explicite
     if corners == 3:
         return "TRIANGLE"
 
-    # Four corners -> treat as cube (inclut rectangles)
+    # Quatre coins : cube ou rectangle
     if corners == 4:
+        if ratio < 0.85 or ratio > 1.15:
+            return "RECTANGLE"
         return "CUBE"
 
-    # Polygons with many corners: decide between cylinder or cube
-    if corners >= 5:
-        if circularity >= 0.55:
-            return "CYLINDRE"
-        else:
-            return "CUBE"
-
-    # Fallback: use heuristics (no UNKNOWN)
-    # If fairly circular -> cylinder, else cube
-    if circularity >= 0.5:
+    # Cylindre si très circulaire
+    if circularity >= 0.75:
         return "CYLINDRE"
-    return "CUBE"
+
+    # Polygones avec plusieurs coins : cylindre approximé ou cube
+    if corners >= 5:
+        if circularity >= 0.65:
+            return "CYLINDRE"
+        return "CUBE"
+
+    # Fallback strict pour réduire les mélanges
+    if circularity >= 0.55:
+        return "CYLINDRE"
+
+    return "UNKNOWN"

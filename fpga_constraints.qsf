@@ -32,3 +32,9 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to shape_code[0]
 
 set_location_assignment PIN_A12 -to shape_code[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to shape_code[1]
+
+-- USB Camera index
+set_location_assignment PIN_A13 -to usb_camera_index
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to usb_camera_index
+
+USB_CAMERA_INDEX = 0
